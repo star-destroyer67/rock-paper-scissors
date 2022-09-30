@@ -2,90 +2,8 @@ enum RadioMessage {
     message1 = 49434
 }
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == 1 && number == 1) {
-        basic.showLeds(`
-            . # . # .
-            . # . # .
-            . . . . .
-            # # # # #
-            . . . . .
-            `)
-    }
-    if (receivedNumber == 3 && number == 3) {
-        basic.showLeds(`
-            . # . # .
-            . # . # .
-            . . . . .
-            # # # # #
-            . . . . .
-            `)
-    }
-    if (receivedNumber == 2 && number == 2) {
-        basic.showLeds(`
-            . # . # .
-            . # . # .
-            . . . . .
-            # # # # #
-            . . . . .
-            `)
-    }
-    if (receivedNumber == 1 && number == 2) {
-        basic.showLeds(`
-            # . . . #
-            # . . . #
-            # . # . #
-            # # . # #
-            # . . . #
-            `)
-        game.addScore(1)
-    }
-    if (receivedNumber == 3 && number == 1) {
-        basic.showLeds(`
-            # . . . #
-            # . . . #
-            # . # . #
-            # # . # #
-            # . . . #
-            `)
-        game.addScore(1)
-    }
-    if (receivedNumber == 3 && number == 1) {
-        basic.showLeds(`
-            # . . . #
-            # . . . #
-            # . # . #
-            # # . # #
-            # . . . #
-            `)
-        game.addScore(1)
-    }
-    if (receivedNumber == 3 && number == 2) {
-        basic.showLeds(`
-            # . . . .
-            # . . . .
-            # . . . .
-            # . . . .
-            # # # # .
-            `)
-    }
-    if (receivedNumber == 2 && number == 1) {
-        basic.showLeds(`
-            # . . . .
-            # . . . .
-            # . . . .
-            # . . . .
-            # # # # .
-            `)
-    }
-    if (receivedNumber == 1 && number == 3) {
-        basic.showLeds(`
-            # . . . .
-            # . . . .
-            # . . . .
-            # . . . .
-            # # # # .
-            `)
-    }
+    user = receivedNumber
+    CheckWin()
 })
 input.onButtonPressed(Button.A, function () {
     number += 1
@@ -121,10 +39,104 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.AB, function () {
     radio.sendNumber(number)
+    CheckWin()
 })
 input.onButtonPressed(Button.B, function () {
     basic.showNumber(game.score())
 })
+function CheckWin () {
+    if (user == 1 && number == 1) {
+        basic.showLeds(`
+            . # . # .
+            . # . # .
+            . . . . .
+            # # # # #
+            . . . . .
+            `)
+    }
+    if (user == 3 && number == 3) {
+        basic.showLeds(`
+            . # . # .
+            . # . # .
+            . . . . .
+            # # # # #
+            . . . . .
+            `)
+    }
+    if (user == 2 && number == 2) {
+        basic.showLeds(`
+            . # . # .
+            . # . # .
+            . . . . .
+            # # # # #
+            . . . . .
+            `)
+    }
+    if (user == 1 && number == 2) {
+        basic.showLeds(`
+            # . . . #
+            # . . . #
+            # . # . #
+            # # . # #
+            # . . . #
+            `)
+        game.addScore(1)
+    }
+    if (user == 3 && number == 1) {
+        basic.showLeds(`
+            # . . . #
+            # . . . #
+            # . # . #
+            # # . # #
+            # . . . #
+            `)
+        game.addScore(1)
+    }
+    if (user == 3 && number == 1) {
+        basic.showLeds(`
+            # . . . #
+            # . . . #
+            # . # . #
+            # # . # #
+            # . . . #
+            `)
+        game.addScore(1)
+    }
+    if (user == 3 && number == 2) {
+        basic.showLeds(`
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            # # # # .
+            `)
+    }
+    if (user == 2 && number == 1) {
+        basic.showLeds(`
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            # # # # .
+            `)
+    }
+    if (user == 1 && number == 3) {
+        basic.showLeds(`
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            # # # # .
+            `)
+    }
+    if (user == 0) {
+        basic.showIcon(IconNames.Silly)
+    } else if (number == 0) {
+        basic.showIcon(IconNames.Silly)
+    }
+}
+let user = 0
 let number = 0
 number = 0
+user = 0
 radio.setGroup(1)
